@@ -1,0 +1,104 @@
+Timeline:
+
+Papers:
+
+TE adaptation
+  Equidistribution principle... on hold until dual solver are up and running, 
+  can write intro, lit review sections
+
+Entropy Adjoint
+  For certain cases, the exact entropy is known, 
+  as is TE (1D Burgers... Q1D nozzle needs TE terms, or substitute in exact soln to discrete eq's)
+
+Hessian TR
+  Need:
+  Help with different unstructured grids (see below)
+  Formulate hybrid Green/LSQ (interior/exterior) method
+
+Code:
+  Want:
+  to unify the simple codes into one-stop-shops for specific tasks
+  a good example for all future work with SENSEI
+
+  Have:
+  3D Jacobians for van Leer and Roe fluxes
+  a tested tridiagonal solver
+  explicit Q1D-nozzle (Q1D) and 1D Burgers' Eq codes
+
+1st week July
+  Need to better understand autotools and library creation
+  Make autotools builds for Q1D and 1DB
+    Once one example is in place, all others will be easy
+
+2nd week July
+  Create primal implicit solver for Q1D, debug and test
+  Create primal implicit solver for 1DB, debug and test
+    Make sure these run back at VT w/o problems
+
+3rd week July
+  Create dual solvers for Q1D and 1DB, debug and test
+  Plenty of literature to compare Q1D dual solutions to, and already have continuous dual 1DB code
+
+4th week July
+  Wrap up dual solver debug, make interface with Aniruddha's 1D adaptation mechanics
+  Work on error estimation methods
+    ( dual solver just a dual solver w/ separate adaptation parameter code? )
+
+1st week August
+  Start some adjoint based adaptation test cases
+
+2nd week August
+  'Odds and ends' aka, wedding week
+
+
+
+Turb modeling stuff ( daily, running in the background )
+
+  Mostly done with CFL3D SA, need to run a few of the finer cases farther
+  Should have .nmf files for FUN3D done during 1st week July
+
+  Need:
+  Talk to C. Rumsey about CFL3D post processing
+  Once SA done, do SST
+
+Papers to write:
+
+**** Hessian writeup:****
+Need to sort sources, currently jumbled between many, many folders. 
+Identify review papers vs. original source material.
+
+Many researchers say one method is optimal vs. another... appears to be 
+mesh dependent.
+
+Convergence properties... should a method be convergent?  
+LSQ of LSQ should be second order, but variational is zeroth(?) order as it is
+mesh quality dependent.
+
+Need mixed type grids... already have right angle tet grids, need:
+Mixed AR Right Angle Tet
+Equilateral Tet
+Isoceles Tet
+
+**** Burgers' Eq. Adjoint ****
+Two parts to this, entropy and TE terms
+
+What happens when entropy is used to flag adaptation?
+Compare to DE and TE distributions.
+
+TE terms for adaptation, what does that mean for adjoint?
+R adapation only on nodes/cells flagged for adaptation?
+
+Presentations to make:
+**** VT Semester Survey ****
+Code base changes to SENSEI
+Unit Testing
+Code Profiling
+
+Continuous Adjoint
+Adjoint error estimation and TE
+Burgers' Eq
+
+TE terms and grid stretching
+
+**** Code Profiling ****
+GPROF Tutorial for VT
